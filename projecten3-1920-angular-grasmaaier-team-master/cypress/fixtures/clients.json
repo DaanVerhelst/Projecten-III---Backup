@@ -1,0 +1,22 @@
+[
+    {
+      "id": 1,
+      "voornaam": "Lars",
+      "familienaam": "Vandenberghe"
+    },
+    {
+      "id": 2,
+      "voornaam": "Michiel",
+      "familienaam": "Schoofs"
+    },       
+    {
+      "id": 3,
+      "voornaam": "Wannes",
+      "familienaam": "De Craene"
+    },
+    {
+      "id": 4,
+      "voornaam": "John",
+      "familienaam": "Travolta"
+    }
+  ]

@@ -1,0 +1,180 @@
+<div class="mt-4">
+
+  <div class="alert alert-danger mr-sm-2" *ngIf="errorMsg">
+      {{ errorMsg }}
+    </div>
+
+<form [formGroup]="begeleider" (ngSubmit)="onSubmit()">
+
+  <div class="input-group mb-3">
+     <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1"> 
+         <!-- <mat-icon>person</mat-icon>  -->
+     </span>
+    </div>
+    <input
+      type="text"
+      class="form-control mr-sm-2"
+      placeholder="Voornaam"
+      aria-label="Name"
+      data-cy="begeleider-voornaam"
+      aria-describedby="basic-addon1"
+      formControlName="voornaam"
+      [ngClass]="fieldClass('voornaam')"
+    />
+    <input
+    type="text"
+    class="form-control mr-sm-2"
+    placeholder="Familienaam"
+    aria-label="Name"
+    data-cy="begeleider-familienaam"
+    aria-describedby="basic-addon1"
+    formControlName="achternaam"
+    [ngClass]="fieldClass('achternaam')"
+  />
+     <div class="invalid-feedback" *ngIf="isValid('achternaam')">
+        naam {{ getErrorMessage(begeleider.get("achternaam").errors) }}
+    </div>
+  </div> 
+  
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+     <span class="input-group-text" id="basic-addon1"> 
+        <!-- <mat-icon>person</mat-icon>  -->
+    </span>
+   </div>
+   <input
+     type="email"
+     class="form-control mr-sm-2"
+     placeholder="Email"
+     aria-label="Email"
+     data-cy="begeleider-email"
+     aria-describedby="basic-addon1"
+     formControlName="email"
+     [ngClass]="fieldClass('email')"
+   />
+    <div class="invalid-feedback" *ngIf="isValid('email')">
+       email {{ getErrorMessage(begeleider.get("email").errors) }}
+   </div>
+ </div> 
+
+ <div class="input-group mb-3">
+  <div class="input-group-prepend">
+   <span class="input-group-text" id="basic-addon1"> 
+      <!-- <mat-icon>person</mat-icon>  -->
+  </span>
+ </div>
+ <input
+   type="password"
+   class="form-control mr-sm-2"
+   placeholder="Password"
+   aria-label="Password"
+   data-cy="begeleider-password"
+   aria-describedby="basic-addon1"
+   formControlName="password"
+   [ngClass]="fieldClass('password')"
+ />
+ <input
+ type="password"
+ class="form-control mr-sm-2"
+ placeholder="Confirm Password"
+ aria-label="ConfirmPassword"
+ data-cy="begeleider-confirm-password"
+ aria-describedby="basic-addon1"
+ formControlName="confirmPassword"
+ [ngClass]="fieldClass('confirmPassword')"
+/>
+  <div class="invalid-feedback" *ngIf="isValid('password')">
+     password {{ getErrorMessage(begeleider.get("password").errors) }}
+ </div>
+</div> 
+
+
+
+
+
+
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">
+        <!--<mat-icon>attach_file</mat-icon>-->
+      </span>
+    </div>
+  
+
+    
+    <div class="custom-file">
+      <input 
+      type="file"
+      class="form-control-file custom-file-input mr-sm-2"
+      placeholder="image"
+      aria-label="image"
+      id="inputGroupFile01"
+      aria-describedby="inputGroupFileAddon01"
+      #fileInput
+      (change)="preUpload($event)"
+      formControlName="image"
+      [ngClass]="fieldClass('image')"
+      />
+      <label
+      class="custom-file-label"
+      for="inputGroupFile01"
+      *ngIf="!isFileChosen"
+      >Profielfoto kiezen</label
+    >
+    <label
+      class="custom-file-label"
+      for="inputGroupFile01"
+      *ngIf="isFileChosen"
+      >{{ fileName }}</label
+    >
+    </div>
+   
+    
+     <div class="invalid-feedback d-block" *ngIf="isValid('image')">
+        {{ getErrorMessage(begeleider.get("image").errors) }}
+    </div> 
+  </div> 
+
+  <div class=" mb-3">
+    <div class= "text-center mx-auto mt-4 mb-4">
+      <label class="checkbox-inline mr-3">
+              <input type="checkbox" placeholder="isAdmin"
+              aria-label="isAdmin"
+              data-cy="begeleider-isAdmin"
+              aria-describedby="basic-addon1"
+              formControlName="isAdmin"
+              [ngClass]="fieldClass('isAdmin')"> Administrator
+            </label>
+      
+      <label class="checkbox-inline">
+                <input type="checkbox" placeholder="isStagair"
+                aria-label="isStagair"
+                data-cy="begeleider-isStagair"
+                aria-describedby="basic-addon1"
+                formControlName="isStagair"
+                [ngClass]="fieldClass('isStagair')"> Stagair
+      </label>
+    </div>
+  </div>
+
+  <div class="text-center mx-auto mt-4 mb-4">
+      <button
+      type="submit"
+      data-cy="begeleider-submit"
+      class="btn btn-outline-primary "
+    >
+      Opslaan
+    </button> 
+    <!-- <button
+      type="submit"
+      data-cy="client-submit"
+      class="btn btn-outline-primary "
+      [disabled]="client.invalid"
+    >
+      Save
+    </button>  -->
+  </div>
+</form> 
+</div>

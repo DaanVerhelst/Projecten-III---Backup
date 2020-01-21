@@ -1,0 +1,39 @@
+<app-navigation [navMode]="mode"></app-navigation>
+<app-breadcrumb [navList]="breadcrumb"></app-breadcrumb>
+<div *ngIf="filteredClienten" class="container">
+<!--Listview of clients -->
+  <div class="row">
+    <div class="col-lg-3 ">
+
+      <div class="list-group">
+          <form class="form-inline">
+              <input class="form-control" type="text" placeholder="Zoeken" aria-label="Zoeken" (keyup)="filterClienten($event.target.value)">
+              <fa-icon [icon]="faSearch" class="m-3"></fa-icon>
+          </form>
+      <button *ngFor="let client of filteredClienten" class="list-group-item list-group-item-action shadow-sm" (click)="setClient(client)">
+        {{client.voornaam}} {{client.familienaam}}
+      </button>
+    </div>
+    </div>
+    <div class="col-lg-9">
+      <div class="card shadow-sm">
+      <div *ngIf="selectedClient as sc;" class="card-header">
+          <div>
+              <h2>Agenda van: {{sc.voornaam}} {{sc.familienaam}}</h2>
+    
+            </div>
+      </div>
+      <div class="card-body">
+      <div *ngIf="selectedClient as sc; else noClient">
+        <app-picto [client]="sc"></app-picto>
+
+      </div>
+      <ng-template #noClient>
+          Selecteer een client om hun agenda te bekijken.
+        </ng-template>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+

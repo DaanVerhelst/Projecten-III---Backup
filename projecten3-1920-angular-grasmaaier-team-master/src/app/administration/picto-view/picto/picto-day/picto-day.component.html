@@ -1,0 +1,59 @@
+<div class="card">
+<div class="card-header">
+{{dayName}}
+</div>
+<div class="card-body">
+  <div class="morning-set">
+    <img class="picto" src="../../../../../assets/bus.png" />
+   <!-- <img class="picto" src="../../../../../assets/empty.png" />-->
+    <img class="picto" src="../../../../../assets/koffie.png" />
+  </div>
+  
+
+<div class="morning-var">
+<div *ngIf="vm$; else noAtelier">
+  <app-picto-item *ngFor="let at of vm$"
+   [aterlier]="at">
+  </app-picto-item>
+</div>
+</div>
+
+<div class="noon">
+  <img class="picto" src="../../../../../assets/bordleeg.png" />
+</div>
+
+<div class="morning-var">
+  <div *ngIf="nm$; else noAtelier">
+    <app-picto-item *ngFor="let at of nm$"
+    [aterlier]="at">
+  </app-picto-item>
+</div>
+</div>
+
+<div class="evening">
+
+  <img class="picto" src="../../../../../assets/bus.png" />
+  <!--<img class="picto" src="../../../../../assets/bus.png" />-->
+  <img class="picto" src="../../../../../assets/koffie.png" />
+
+  <!--<app-picto-item *ngFor="let at of ateliers | atelier:selectedIndex"-->  
+   
+ <!--  
+<app-picto-item *ngFor="let at of atelier$"
+   class="d-inline-block col-3" [aterlier]="at">
+</app-picto-item>-->
+
+</div>
+</div>
+</div>
+
+<ng-template #noAtelier>
+  
+    <div>
+       
+        <img class="picto" src="../../../../../assets/empty.png" />
+      </div>
+      <div>
+        <img class="picto" src="../../../../../assets/empty.png" />
+      </div>
+</ng-template>

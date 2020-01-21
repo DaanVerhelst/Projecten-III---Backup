@@ -1,0 +1,61 @@
+
+.example-list {
+    border: solid 1px #ccc;
+    min-height: 60px;
+    background: white;
+    border-radius: 4px;
+    overflow: auto;
+    display: block;
+    height: 300px;
+    padding: 10px;
+
+}
+  
+.example-box {
+    padding: 20px 10px;
+    border-bottom: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: move;
+    background: white;
+    font-size: 14px;
+}
+
+.fixedList{
+    overflow: auto; 
+    height: 574px; 
+    background-color: #fcfcfc; 
+    border: solid 1px #e9ecef; 
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.ic{
+    display: inline-block;  
+    flex-wrap: wrap;
+}
+
+.ic:hover{
+    border-color: #007DDD;
+    box-shadow: 0px 0px 10px #007DDD;
+}
+.ic:focus {
+    border-color: #007DDD;
+    box-shadow: 0px 0px 10px #007DDD;
+}
+
+input[type=time] {
+    border: solid 1px #707070;
+    border-radius: 3px;
+    padding: 5px;
+    padding-left: 40px ;
+    color: #707070;
+    font-size: 20px;
+    font-family: helvetica;
+    width: 150px;
+    text-align: center;
+  }

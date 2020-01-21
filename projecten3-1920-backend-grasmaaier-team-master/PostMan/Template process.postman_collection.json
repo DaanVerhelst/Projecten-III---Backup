@@ -1,0 +1,1136 @@
+{
+	"info": {
+		"_postman_id": "07d560a6-e26e-4fbd-8a5f-c8e2d20d3c67",
+		"name": "Template process",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get authorization token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b4505da3-5a62-4203-9d40-d6429812331c",
+						"exec": [
+							"var data = pm.response.text();\r",
+							"pm.environment.set(\"token\", data)\r",
+							"console.log(pm.variables.get(\"token\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"Tycho.Altink@mail.be\",\r\n  \"password\": \"admin123\"\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Gebruiker",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Gebruiker"
+					]
+				},
+				"description": "Get token"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ateliers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Atelier/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Atelier",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Clienten",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "30efe833-53ed-45a1-8cc1-ee997f94e901",
+						"exec": [
+							"var json = pm.response.json();",
+							"json = json.map(j=>j.id);",
+							"pm.environment.set(\"clienten\",json);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Persoon/clienten",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Persoon",
+						"clienten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Begeleiders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "40e1f85d-12e9-4e75-9b83-d9956e27333b",
+						"exec": [
+							"var json = pm.response.json();",
+							"json = json.map(j=>j.id);",
+							"pm.environment.set(\"begeleiders\",json);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Persoon/begeleiders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Persoon",
+						"begeleiders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create template day",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dbe826a5-6b98-440b-8cbd-713cc68d3f81",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "abaa3b75-62c1-4bb0-a6cb-fff75004d81c",
+						"exec": [
+							"var client = pm.environment.get(\"clienten\")",
+							"var num = Math.random()*client.length",
+							"var toAdd = []",
+							"",
+							"for (i = 0; i < num; i++) {",
+							"    var randomClient = client[Math.floor((Math.random()*client.length))]",
+							"    var index = client.indexOf(randomClient)",
+							"    ",
+							"    if (index > -1) {",
+							"       client.splice(index, 1)",
+							"    }",
+							"    ",
+							"    toAdd.push(randomClient)",
+							"}",
+							"",
+							"console.log(toAdd)",
+							"var client = pm.environment.set(\"clientsToAdd\",toAdd)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"atelierInfo\": {\r\n            \"atelierID\": 1,\r\n            \"start\": \"09:00:00\",\r\n            \"eind\": \"14:00:00\"\r\n        },\r\n        \"clients\": [],\r\n        \"begeleiders\": []\r\n    },\r\n    {\r\n        \"atelierInfo\": {\r\n            \"atelierID\": 2,\r\n            \"start\": \"09:00:00\",\r\n            \"eind\": \"12:30:00\"\r\n        },\r\n        \"clients\": [{{clientsToAdd}}],\r\n        \"begeleiders\": []\r\n    }\r\n]"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/1/week/{{weeknr}}/create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"1",
+						"week",
+						"{{weeknr}}",
+						"create"
+					]
+				},
+				"description": "\n"
+			},
+			"response": []
+		},
+		{
+			"name": "create template day 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dbe826a5-6b98-440b-8cbd-713cc68d3f81",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t  \"atelierID\": 4,\n\t  \"start\": \"12:00:00\",\n\t  \"eind\": \"17:00:00\"\n\t},\n\t{\n\t  \"atelierID\": 8,\n\t  \"start\": \"10:00:00\",\n\t  \"eind\": \"12:30:00\"\n\t}\n]"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/2/week/{{weeknr}}/create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"2",
+						"week",
+						"{{weeknr}}",
+						"create"
+					]
+				},
+				"description": "\n"
+			},
+			"response": []
+		},
+		{
+			"name": "create template day 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dbe826a5-6b98-440b-8cbd-713cc68d3f81",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t  \"atelierID\": 23,\n\t  \"start\": \"19:00:00\",\n\t  \"eind\": \"21:00:00\"\n\t},\n\t{\n\t  \"atelierID\": 24,\n\t  \"start\": \"07:00:00\",\n\t  \"eind\": \"10:30:00\"\n\t}\n]"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/3/week/{{weeknr}}/create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"3",
+						"week",
+						"{{weeknr}}",
+						"create"
+					]
+				},
+				"description": "\n"
+			},
+			"response": []
+		},
+		{
+			"name": "create template day 4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dbe826a5-6b98-440b-8cbd-713cc68d3f81",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t  \"atelierID\": 32,\n\t  \"start\": \"09:00:00\",\n\t  \"eind\": \"21:00:00\"\n\t},\n\t{\n\t  \"atelierID\": 33,\n\t  \"start\": \"14:15:00\",\n\t  \"eind\": \"16:30:00\"\n\t}\n]"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/4/week/{{weeknr}}/create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"4",
+						"week",
+						"{{weeknr}}",
+						"create"
+					]
+				},
+				"description": "\n"
+			},
+			"response": []
+		},
+		{
+			"name": "create template day 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dbe826a5-6b98-440b-8cbd-713cc68d3f81",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t  \"atelierID\": 12,\n\t  \"start\": \"09:00:00\",\n\t  \"eind\": \"21:00:00\"\n\t},\n\t{\n\t  \"atelierID\": 23,\n\t  \"start\": \"14:15:00\",\n\t  \"eind\": \"16:30:00\"\n\t}\n]"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/5/week/{{weeknr}}/create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"5",
+						"week",
+						"{{weeknr}}",
+						"create"
+					]
+				},
+				"description": "\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Verander Uur van activiteit",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "22ff8765-4758-493e-a700-7fbc14ea7e73",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"atelierID\": 1,\n    \"start\": \"13:00:00\",\n    \"eind\": \"16:00:00\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/{{dagnr}}/week/{{weeknr}}/activiteit/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"{{dagnr}}",
+						"week",
+						"{{weeknr}}",
+						"activiteit",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Voeg Begeleiders Toe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "af1d2ad6-644f-46fa-b5d5-0a04644f705d",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{{begeleiders}}\n]"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/{{dagnr}}/week/{{weeknr}}/activiteit/1/begeleiders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"{{dagnr}}",
+						"week",
+						"{{weeknr}}",
+						"activiteit",
+						"1",
+						"begeleiders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Begeleiders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/{{dagnr}}/week/{{weeknr}}/activiteit/1/begeleiders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"{{dagnr}}",
+						"week",
+						"{{weeknr}}",
+						"activiteit",
+						"1",
+						"begeleiders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Voeg Clienten Toe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "227fc199-3fb4-4a14-8cec-d0c8acd8b7fd",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "cf3e7f65-7eb3-48a9-b109-6397e2aa9bd8",
+						"exec": [
+							"var client = pm.environment.get(\"clienten\")",
+							"var num = Math.random()*client.length",
+							"var toAdd = []",
+							"",
+							"for (i = 0; i < num; i++) {",
+							"    var randomClient = client[Math.floor((Math.random()*client.length))]",
+							"    var index = client.indexOf(randomClient)",
+							"    ",
+							"    if (index > -1) {",
+							"       client.splice(index, 1)",
+							"    }",
+							"    ",
+							"    toAdd.push(randomClient)",
+							"}",
+							"",
+							"console.log(toAdd)",
+							"var client = pm.environment.set(\"clientsToAdd\",toAdd)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{{clientsToAdd}}\n]"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/{{dagnr}}/week/{{weeknr}}/activiteit/1/clienten",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"{{dagnr}}",
+						"week",
+						"{{weeknr}}",
+						"activiteit",
+						"1",
+						"clienten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Clienten",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/{{dagnr}}/week/{{weeknr}}/activiteit/1/clienten",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"{{dagnr}}",
+						"week",
+						"{{weeknr}}",
+						"activiteit",
+						"1",
+						"clienten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Clients from template",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2d9f10c3-b849-40eb-9c96-219fdc52695c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9f80eecf-3034-4c5c-a1d9-919f6cd77e92",
+						"exec": [
+							"var client = pm.environment.get(\"clientsToAdd\")",
+							"var num = Math.random()*client.length",
+							"var toDel = []",
+							"",
+							"for (i = 0; i < num; i++) {",
+							"    var randomClient = client[Math.floor((Math.random()*client.length))]",
+							"    var index = client.indexOf(randomClient)",
+							"    ",
+							"    if (index > -1) {",
+							"       client.splice(index, 1)",
+							"    }",
+							"    ",
+							"    toDel.push(randomClient)",
+							"}",
+							"",
+							"console.log(toDel)",
+							"var client = pm.environment.set(\"clientsToDelete\",toDel)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{{clientsToDelete}}\n]"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/1/week/1/activiteit/1/clienten",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"1",
+						"week",
+						"1",
+						"activiteit",
+						"1",
+						"clienten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Clienten",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/{{dagnr}}/week/{{weeknr}}/activiteit/1/clienten",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"{{dagnr}}",
+						"week",
+						"{{weeknr}}",
+						"activiteit",
+						"1",
+						"clienten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Template Activiteiten",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6111afc6-656e-43f1-a3df-febcbfc9e2f8",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/1/week/{{weeknr}}/activiteiten",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"1",
+						"week",
+						"{{weeknr}}",
+						"activiteiten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Week",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Template/week/{{weeknr}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"week",
+						"{{weeknr}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Activity From Template",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2d9f10c3-b849-40eb-9c96-219fdc52695c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9f80eecf-3034-4c5c-a1d9-919f6cd77e92",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/{{dagnr}}/week/{{weeknr}}/activitieit/1/delete",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"{{dagnr}}",
+						"week",
+						"{{weeknr}}",
+						"activitieit",
+						"1",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Template",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "693d60ff-8594-4841-8a44-e324484535ed",
+						"exec": [
+							"var dn = pm.environment.get(\"dagnr\")",
+							"",
+							"dn = (++dn);",
+							"var wn = parseInt(pm.environment.get(\"weeknr\"))+Math.floor(dn/6);",
+							"",
+							"if(dn>5){",
+							"    dn=1;",
+							"}",
+							"pm.environment.set(\"dagnr\",dn);",
+							"pm.environment.set(\"weeknr\",wn);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "14a8ba18-3dae-4cf0-adf9-01f9b8a56e6e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/{{dagnr}}/week/{{weeknr}}/delete",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"{{dagnr}}",
+						"week",
+						"{{weeknr}}",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ccvccvccv",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b26d2f6e-c76a-4429-94cb-581a48204ce9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "5b3e688c-5bf5-4c90-9790-2eca825a4c5d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "ce3b5c99-9b7d-4708-bf56-0d97b5b3f63a",
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

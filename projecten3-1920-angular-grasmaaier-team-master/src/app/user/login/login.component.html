@@ -1,0 +1,32 @@
+<app-navigation [navMode]='mode'></app-navigation>
+<div class="container-fluid pt-3">
+  <aside class="col-md-4 col-xl-3 mx-auto my-auto">
+    <div class="card login-box">
+      <article class="card-body">
+        <form [formGroup]="user" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><fa-icon [icon]="faUser"></fa-icon></span>
+              </div>
+              <input placeholder="email" aria-label="email" formControlName="username" class="form-control" data-cy="username">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><fa-icon [icon]="faKey"></fa-icon></span>
+              </div>
+              <input type="password" placeholder="wachtwoord" aria-label="password" formControlName="password" data-cy="password"
+                class="form-control">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" data-cy="login-button">
+            Login
+          </button>
+        </form>
+        <div *ngIf="errorMsg != null && errorMsg != ''" class="alert-danger" style="margin: 10px 0px; padding: 7px" data-cy="loginErrorMsg">{{errorMsg}}</div>
+      </article>
+    </div>
+  </aside>
+</div>

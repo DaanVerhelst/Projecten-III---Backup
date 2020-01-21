@@ -1,0 +1,33 @@
+<form class="form-inline justify-content-center">
+      <input class="form-control" type="text" placeholder="Naam atelier" aria-label="Naam atelier"
+        (keyup)="filterAtelierLijst($event.target.value)">
+      <!-- <fa-icon [icon]="faPlus" class="m-3" (click)="clicked()" (keyup.enter)="clicked()"></fa-icon> -->
+      <Button [ngClass]="selectedAtelier ===null?'btn-secondary':'btn-primary'" class="btn ml-3"
+        [disabled]='selectedAtelier===null' (click)="reset()">
+        <fa-icon id="white" [icon]="faPlus" class="m-3"></fa-icon>
+      </Button>
+    </form>
+    <br />
+    <div class="container-fluid" style="padding:0;">
+      <div class="row">
+        <div class="col-1 align-self-center">
+          <fa-icon class="blue" *ngIf="selectedIndex!==1" [icon]="faArrowLeft"
+            (click)="selectedIndex = selectedIndex-1"></fa-icon>
+        </div>
+        <div class="col-10">
+          <atelier-component *ngFor="let at of filterdList | atelier:selectedIndex"
+            [ngClass]="isSelected(at)?'active':''" class="d-inline-block col-3" [aterlier]="at" (click)="onClick(at)">
+          </atelier-component>
+        </div>
+        <div class="col-1 align-self-center">
+          <fa-icon class="blue" *ngIf="selectedIndex!==numPages" [icon]="faArrowRight"
+            (click)="selectedIndex = selectedIndex+1"></fa-icon>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <span>
+          <fa-icon *ngFor="let i of range(1,numPages)" [ngClass]="i === selectedIndex?'blue':'grey'" (click)="selectedIndex=i" [icon]="faCircle"
+            class="m-3"></fa-icon>
+        </span>
+      </div>
+    </div>

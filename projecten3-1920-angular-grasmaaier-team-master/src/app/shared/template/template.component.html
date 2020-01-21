@@ -1,0 +1,7 @@
+<app-navigation [navMode]="mode"></app-navigation>
+<app-breadcrumb [navList]="breadcrumb"></app-breadcrumb>
+<div class="container">
+  <div *ngFor="let i of [1,2,3,4]">
+    <app-week [weekNummer]="i"></app-week>
+  </div>
+</div>

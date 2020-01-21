@@ -1,0 +1,24 @@
+<app-navigation [navMode]="mode"></app-navigation>
+<app-breadcrumb [navList]="breadcrumb"></app-breadcrumb>
+<div class="container">
+  <div *ngIf="errorMsg" class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+  <h2>Ateliers</h2>
+  <div class="row">
+    <div class="card mr-3 col">
+      <div class="card-body">
+        <app-atelier-list [selectedAtelier]="selectedAtelier" [atelierList]="atelierList"
+         (SelectionChanged)="selectionChanged($event)">
+        </app-atelier-list>
+      </div>
+    </div>
+    <div class="card col">
+      <div class="card-body">
+        <app-atelier-details (verwijderdAtelier)="deleteAtelier($event)"
+        (nieuwAtelier)="addNewAtelier($event)" (veranderdAtelier)="changeAtelier($event)"
+         (errors)="changeError($event)" [atelier]="selectedAtelier"></app-atelier-details>
+      </div>
+    </div>
+  </div>
+</div>

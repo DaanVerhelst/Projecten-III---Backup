@@ -1,0 +1,10 @@
+<div class="card-body pb-3 container-fluid content-row">
+    <h2>Week {{weekNummer}}</h2>
+    <div class="row" *ngIf="atelierMartix">
+      <app-dag *ngFor="let i of [1,2,3,4,5]" [atelierList]="atelierMartix[i-1]" 
+      [weekNr]="weekNummer" [dagNr]="i" class="col nopadding"></app-dag>
+    </div>
+</div>
+
+
+

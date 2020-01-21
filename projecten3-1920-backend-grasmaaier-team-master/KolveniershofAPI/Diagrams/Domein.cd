@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="KolveniershofAPI.Model.Atelier">
+    <Position X="3" Y="9" Width="2.25" />
+    <Members>
+      <Property Name="ID" Hidden="true" />
+    </Members>
+    <AssociationLine Name="AtelierDagen" Type="KolveniershofAPI.Model.Model_EF.Atelier_Dag">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.156" Y="0.151" Height="0.182" Width="1.192" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Pictogram" Type="KolveniershofAPI.Model.Foto" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.375" Y="9" />
+        <Point X="4.375" Y="8.738" />
+        <Point X="1.938" Y="8.738" />
+        <Point X="1.938" Y="8.488" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.846" Y="0.34" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAABAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Atelier.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Pictogram" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="AtelierDagen" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.Begeleider">
+    <Position X="3.25" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Begeleider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.BijzonderUurRegistratie">
+    <Position X="26.5" Y="6.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAQAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\BijzonderUurRegistratie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.Client">
+    <Position X="0.75" Y="3.5" Width="2" />
+    <Members>
+      <Property Name="SfeerGroepID" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="KolveniershofAPI.Model.Persoon" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.125" Y="1.988" />
+        <Point X="3.125" Y="3.125" />
+        <Point X="1.667" Y="3.125" />
+        <Point X="1.667" Y="3.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Client.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SfeerGroep" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.Dag">
+    <Position X="16" Y="0.75" Width="6.5" />
+    <AssociationLine Name="Dag_Personen" Type="KolveniershofAPI.Model.Model_EF.Dag_Persoon">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.06" Y="0.11" Height="0.182" Width="1.234" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Notities" Type="KolveniershofAPI.Model.Notitieblok" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="22.5" Y="2.192" />
+        <Point X="22.875" Y="2.192" />
+        <Point X="22.875" Y="1.625" />
+        <Point X="23.75" Y="1.625" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ABAAAhAIBABAAAAAABAAAEAAAAECEAARAAAEAAAAAAA=</HashCode>
+      <FileName>Model\Dag.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Notities" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Dag_Personen" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.DagMenu">
+    <Position X="5.75" Y="1.75" Width="2.5" />
+    <Members>
+      <Property Name="ID" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAgAAQAAAACQAAAAAAAAAAAAAAgAAAACA=</HashCode>
+      <FileName>Model\DagMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.DagTemplate">
+    <Position X="10.25" Y="1.75" Width="4.75" />
+    <Members>
+      <Property Name="ID" Hidden="true" />
+      <Property Name="MenuID" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Atelier_Dag" Type="KolveniershofAPI.Model.Model_EF.Atelier_Dag" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.813" Y="4.844" />
+        <Point X="13.813" Y="8.062" />
+        <Point X="12.5" Y="8.062" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.005" Y="-0.317" Height="0.182" Width="1.187" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Ateliers" Type="KolveniershofAPI.Model.Atelier">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.015" Y="0.275" Height="0.182" Width="0.893" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Menu" Type="KolveniershofAPI.Model.DagMenu">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.529" Y="0.037" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CAAAABAAAgAAgAAAIAAAAAgAAAAKBAAAIAAAECBAAAg=</HashCode>
+      <FileName>Model\DagTemplate.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Menu" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Atelier_Dag" />
+      <Property Name="Ateliers" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.Foto">
+    <Position X="1" Y="7" Width="2.25" />
+    <Members>
+      <Property Name="ID" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAIAQAAAAAAAABAAAA=</HashCode>
+      <FileName>Model\Foto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.IndividueleOndersteuningClienten">
+    <Position X="20.5" Y="7" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Model\IndividueleOndersteuningClienten.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.NotiteLijsten">
+    <Position X="24" Y="3.5" Width="2.75" />
+    <Members>
+      <Property Name="ID" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Persoon" Type="KolveniershofAPI.Model.Persoon" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="24" Y="4.964" />
+        <Point X="21.114" Y="4.964" />
+        <Point X="21.114" Y="0.292" />
+        <Point X="10.5" Y="0.292" />
+        <Point X="10.5" Y="0.229" />
+        <Point X="4.271" Y="0.229" />
+        <Point X="4.271" Y="0.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.857" Y="0.006" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAgAAgAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Model\NotiteLijsten.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Persoon" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.Notitieblok">
+    <Position X="23.75" Y="0.5" Width="7.25" />
+    <Members>
+      <Property Name="ID" Hidden="true" />
+    </Members>
+    <AssociationLine Name="LijstNoties" Type="KolveniershofAPI.Model.NotiteLijsten">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.141" Y="-0.001" Height="0.182" Width="0.955" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAgAAAAAAAAAAAIAAKAAAAAAAAAAYAAAA=</HashCode>
+      <FileName>Model\Notitieblok.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="LijstNoties" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.Persoon">
+    <Position X="1.75" Y="0.5" Width="2.75" />
+    <Members>
+      <Property Name="ID" Hidden="true" />
+      <Property Name="ProfielFotoID" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Personen" Type="KolveniershofAPI.Model.Dag">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="1.129" Y="0.06" Height="0.182" Width="0.993" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ProfielFoto" Type="KolveniershofAPI.Model.Foto" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.75" Y="1.375" />
+        <Point X="0.312" Y="1.375" />
+        <Point X="0.312" Y="8.582" />
+        <Point X="0.906" Y="8.582" />
+        <Point X="0.906" Y="7.812" />
+        <Point X="1" Y="7.812" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.169" Y="-1.057" Height="0.182" Width="1.049" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAgAgAAABRAAAAABAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Model\Persoon.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProfielFoto" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Dag_Personen" />
+      <Property Name="Personen" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.SfeerGroep">
+    <Position X="0.5" Y="5.75" Width="2" />
+    <Members>
+      <Property Name="ID" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\SfeerGroep.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.Model_EF.Atelier_Dag">
+    <Position X="8.25" Y="7" Width="4.25" />
+    <Members>
+      <Property Name="ID" Hidden="true" />
+    </Members>
+    <AssociationLine Name="ADP" Type="KolveniershofAPI.Model.Model_EF.Atelier_Dag_Persoon">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.11" Y="0.06" Height="0.182" Width="0.703" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Begeleiders" Type="KolveniershofAPI.Model.Begeleider" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.544" Y="7" />
+        <Point X="10.544" Y="6.625" />
+        <Point X="4.927" Y="6.625" Type="JumpStart" />
+        <Point X="4.76" Y="6.625" Type="JumpEnd" />
+        <Point X="4.438" Y="6.625" />
+        <Point X="4.438" Y="5.127" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.014" Y="0.225" Height="0.182" Width="1.125" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Clienten" Type="KolveniershofAPI.Model.Client" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.25" Y="8.083" />
+        <Point X="4.927" Y="8.083" Type="JumpStart" />
+        <Point X="4.76" Y="8.083" Type="JumpEnd" />
+        <Point X="3.5" Y="8.083" />
+        <Point X="3.5" Y="5.5" />
+        <Point X="2.292" Y="5.5" />
+        <Point X="2.292" Y="4.925" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.975" Y="0.147" Height="0.182" Width="0.893" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Template" Type="KolveniershofAPI.Model.DagTemplate" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.5" Y="7.375" />
+        <Point X="12.75" Y="7.375" />
+        <Point X="12.75" Y="5.219" />
+        <Point X="12.427" Y="5.219" />
+        <Point X="12.427" Y="4.844" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAIAAAEgAGAAgIEAAAgEAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Model_EF\Atelier_Dag.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Atelier" />
+      <Property Name="Template" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ADP" />
+      <Property Name="Begeleiders" />
+      <Property Name="Clienten" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.Model_EF.Atelier_Dag_Persoon">
+    <Position X="10.75" Y="5.25" Width="1.5" />
+    <Members>
+      <Property Name="ID" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Persoon" Type="KolveniershofAPI.Model.Persoon" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.75" Y="5.545" />
+        <Point X="10.008" Y="5.545" />
+        <Point X="10.008" Y="4.65" />
+        <Point X="8.833" Y="4.65" Type="JumpStart" />
+        <Point X="8.667" Y="4.65" Type="JumpEnd" />
+        <Point X="8.5" Y="4.65" />
+        <Point X="8.5" Y="1.625" />
+        <Point X="4.5" Y="1.625" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.091" Y="-0.265" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="AD" Type="KolveniershofAPI.Model.Model_EF.Atelier_Dag">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.592" Y="-0.078" Height="0.182" Width="0.5" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgIAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Model\Model_EF\Atelier_Dag_Persoon.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Persoon" />
+      <Property Name="AD" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="KolveniershofAPI.Model.Model_EF.Dag_Persoon">
+    <Position X="8.75" Y="0.5" Width="2.5" />
+    <Members>
+      <Property Name="ID" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Persoon" Type="KolveniershofAPI.Model.Persoon" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.75" Y="1.25" />
+        <Point X="8.375" Y="1.25" />
+        <Point X="8.375" Y="1.295" />
+        <Point X="4.5" Y="1.295" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAIAAAgAAAAAAAAAAACAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Model\Model_EF\Dag_Persoon.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Persoon" />
+      <Property Name="Dag" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="KolveniershofAPI.Model.BusregelingRol">
+    <Position X="13.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAQAAAAABBAAAAAAAAAAAAAAAABAABBA=</HashCode>
+      <FileName>Model\BusregelingRol.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="KolveniershofAPI.Model.NotieblokCategorie">
+    <Position X="11.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAFAAAgAAAAAAAAAAAgAAAAAAAAAAAABAAIAAAAAAA=</HashCode>
+      <FileName>Model\NotieblokCategorie.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

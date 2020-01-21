@@ -1,0 +1,8 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item" *ngFor="let item of navList.slice(0,-1)">
+        <a [routerLink]="" (click)="navigateFromBreadcrumbs(item.key)">{{item.key}}</a>
+      </li>
+    <li class="breadcrumb-item active" aria-current="page">{{navList.slice(-1).pop().key}}</li>
+  </ol>
+</nav>

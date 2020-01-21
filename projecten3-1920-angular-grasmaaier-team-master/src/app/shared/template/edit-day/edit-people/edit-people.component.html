@@ -1,0 +1,39 @@
+<h2>{{activiteit.naam}}</h2>
+<div class="row">
+  <div class="col-6">
+    <h3>Begeleiders</h3>
+    <form class="form-inline">
+      <input class="form-control" type="text" placeholder="Zoeken" aria-label="Zoeken" (keyup)="filterBegeleiders($event.target.value)">
+      <fa-icon [icon]="faSearch" class="m-3"></fa-icon>
+    </form>
+    <div style="overflow: auto; max-height: 300px;">
+      <ul class="list-group" *ngIf="alleBegeleiders">
+        <li class="list-group-item" *ngFor="let item of getBegeleiderLst()" (click)="handleCheckBoxBegeleider(item)">
+          {{ item.voornaam }} {{ item.familienaam }}
+          <span class="float-right"><input type="checkbox" [checked]="item.selected"/></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-6">
+    <h3>Clienten</h3>
+    <form class="form-inline">
+      <input class="form-control" type="text" placeholder="Zoeken" aria-label="Zoeken" (keyup)="filterClienten($event.target.value)">
+      <fa-icon [icon]="faSearch" class="m-3"></fa-icon>
+    </form>
+    <div style="overflow: auto; max-height: 300px;">
+      <ul class="list-group" *ngIf="alleClienten">
+        <li class="list-group-item" *ngFor="let item of getClientenLst()" (click)="handleCheckBoxClient(item)">
+          {{ item.voornaam }} {{ item.familienaam }}
+          <span class="float-right"
+            ><input type="checkbox" [checked]="item.selected" 
+          /></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container d-flex justify-content-center">
+  <button class="btn btn-primary m-3" (click)="save()">Opslaan</button>
+  <button class="btn btn-secondary m-3" (click)="cancel()">Annuleren</button>
+</div>

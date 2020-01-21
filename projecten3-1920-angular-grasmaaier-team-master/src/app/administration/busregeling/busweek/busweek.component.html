@@ -1,0 +1,6 @@
+<div class="card-body pb-3 container-fluid content-row">
+  <h2>Busregeling</h2>
+  <div class="row" *ngIf="busMartix">
+    <app-busdag *ngFor="let i of [1,2,3,4,5]" [busList]="busMartix[i-1]" [weekNr]="weekNummer" [dagNr]="i" class="col nopadding"></app-busdag>
+  </div>
+</div>

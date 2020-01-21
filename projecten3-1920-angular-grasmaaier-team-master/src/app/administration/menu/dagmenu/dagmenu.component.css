@@ -1,0 +1,25 @@
+.container {
+  padding-right: 200px;
+  padding-left: 200px;
+  padding-top: 30px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.form-row{
+    margin: 5px;
+}
+
+.cancel{
+    background-color: red;
+    border-color: red;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+
+.confirm{
+    background-color: #007ddd;
+    border-color: #007ddd;
+    margin-left: 5px;
+    margin-top: 10px;
+}

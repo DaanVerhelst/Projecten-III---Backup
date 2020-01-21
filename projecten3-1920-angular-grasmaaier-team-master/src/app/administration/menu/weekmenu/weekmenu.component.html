@@ -1,0 +1,23 @@
+<app-navigation [navMode]="mode"></app-navigation>
+<app-breadcrumb [navList]="breadcrumb"></app-breadcrumb>
+
+<div class="container-fluid" *ngIf="!errorString; else elseBlock">
+  <div class="row justify-content-center">
+    <div class="card col-3 cardDiv" style="width: 18rem; margin: 10px" *ngFor="let menu of menuList" (click)="navigateToDagMenu(menu.id)">
+        <div class="card-body">
+          <h5 class="card-title">{{menu.dagNaam}}</h5>
+          <p class="card-text">Soep: {{menu.soep}}<br>
+            Groente: {{menu.groente}}<br>
+            Vlees: {{menu.vlees}}<br>
+            Supplement: {{menu.supplement}}</p>
+        </div>
+      </div>
+    </div>
+</div>
+
+<ng-template #elseBlock>
+    <div class="container-fluid center-text">
+        <p>De menu's van deze week zijn momenteel niet beschikbaar.</p>
+    </div>
+</ng-template>
+

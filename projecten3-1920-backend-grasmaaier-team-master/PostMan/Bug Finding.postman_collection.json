@@ -1,0 +1,475 @@
+{
+	"info": {
+		"_postman_id": "2c661e8c-7463-453d-ba1e-9116efee3106",
+		"name": "Bug Finding",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorization Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c5264f1b-e2df-4e6f-99e1-40acc6655621",
+						"exec": [
+							"var data = pm.response.text();\r",
+							"pm.environment.set(\"Token\", data)\r",
+							"console.log(pm.variables.get(\"Token\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"Tycho.Altink@mail.be\",\r\n  \"password\": \"admin123\"\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Gebruiker",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Gebruiker"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Begeleiders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5d4e327b-90b5-4aea-8159-292c5d5a8792",
+						"exec": [
+							"var json = pm.response.json();",
+							"var ids = json.map(x=>x.id);",
+							"pm.environment.set(\"Begeleiders\",ids);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Persoon/begeleiders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Persoon",
+						"begeleiders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Clients",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1ed27b6c-f3ac-4c96-9d62-43daaa1f0de2",
+						"exec": [
+							"var json = pm.response.json();",
+							"var ids = json.map(j=>j.id);",
+							"pm.environment.set(\"Clients\",ids);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Persoon/clienten",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Persoon",
+						"clienten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Activiteiten",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ed931cab-e3df-4cdc-99ee-214556e676a9",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f3190c6-bd83-48d6-b86c-cde96191e947",
+						"exec": [
+							"var json = pm.response.json();",
+							"var ids = json.map(j=>j.atelierID);",
+							"pm.environment.set(\"Activiteiten\",ids);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Atelier/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Atelier",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Make Template",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "34d91fef-22a7-43c7-bcd9-de9ddcc45a2a",
+						"exec": [
+							"var act = pm.environment.get(\"Activiteiten\")",
+							"var aantalActiviteiten = Math.floor(Math.random()*act.length);",
+							"",
+							"var body = [];",
+							"",
+							"for(i=0;i<aantalActiviteiten;i++){",
+							"    var randomAct = act[Math.floor(Math.random()*act.length)];",
+							"    act = act.filter(e=>e!=randomAct);",
+							"    var randomStart = Math.floor(Math.random()*20)+1;",
+							"    var endStart = Math.floor(Math.random() * (24 - randomStart)) + randomStart;",
+							"    ",
+							"    clients = pm.environment.get(\"Clients\");",
+							"    var numClients = Math.floor(Math.random()*(clients.length-1))+1;",
+							"    cli=[];",
+							"    ",
+							"    for(j=0;j<numClients;j++){",
+							"        var randomCli = clients[Math.floor(Math.random()*clients.length)];",
+							"        clients = clients.filter(e=>e!=randomCli);",
+							"        cli.push(randomCli)",
+							"    }",
+							"     ",
+							"    begeleiders = pm.environment.get(\"Begeleiders\");",
+							"    var numBeg = Math.floor(Math.random()*(begeleiders.length-1))+1;",
+							"    beg=[];",
+							"    ",
+							"    for(k=0;k<numBeg;k++){",
+							"        var randomBeg = begeleiders[Math.floor(Math.random()*begeleiders.length)];",
+							"        begeleiders = begeleiders.filter(e=>e!=randomBeg);",
+							"        beg.push(randomBeg)",
+							"    }",
+							"    ",
+							"    var obj = {",
+							"        \"atelierInfo\": {",
+							"            \"atelierID\": randomAct,",
+							"            \"start\": `${randomStart<10?\"0\":\"\"}${randomStart}:00:00`,",
+							"            \"eind\": `${endStart<10?\"0\":\"\"}${endStart}:00:00`",
+							"        },",
+							"        \"clients\":cli,",
+							"        \"begeleiders\":beg",
+							"    }",
+							"    body.push(obj);",
+							"}",
+							"pm.environment.set(\"Body\",JSON.stringify(body));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{Body}}"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/1/week/1/create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"1",
+						"week",
+						"1",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Template",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/1/week/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"1",
+						"week",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Make Template",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "34d91fef-22a7-43c7-bcd9-de9ddcc45a2a",
+						"exec": [
+							"var act = pm.environment.get(\"Activiteiten\")",
+							"var aantalActiviteiten = Math.floor(Math.random()*act.length);",
+							"",
+							"var body = [];",
+							"",
+							"for(i=0;i<aantalActiviteiten;i++){",
+							"    var randomAct = act[Math.floor(Math.random()*act.length)];",
+							"    act = act.filter(e=>e!=randomAct);",
+							"    var randomStart = Math.floor(Math.random()*20)+1;",
+							"    var endStart = Math.floor(Math.random() * (24 - randomStart)) + randomStart;",
+							"    ",
+							"    clients = pm.environment.get(\"Clients\");",
+							"    var numClients = Math.floor(Math.random()*(clients.length-1))+1;",
+							"    cli=[];",
+							"    ",
+							"    for(j=0;j<numClients;j++){",
+							"        var randomCli = clients[Math.floor(Math.random()*clients.length)];",
+							"        clients = clients.filter(e=>e!=randomCli);",
+							"        cli.push(randomCli)",
+							"    }",
+							"     ",
+							"    begeleiders = pm.environment.get(\"Begeleiders\");",
+							"    var numBeg = Math.floor(Math.random()*(begeleiders.length-1))+1;",
+							"    beg=[];",
+							"    ",
+							"    for(k=0;k<numBeg;k++){",
+							"        var randomBeg = begeleiders[Math.floor(Math.random()*begeleiders.length)];",
+							"        begeleiders = begeleiders.filter(e=>e!=randomBeg);",
+							"        beg.push(randomBeg)",
+							"    }",
+							"    ",
+							"    var obj = {",
+							"        \"atelierInfo\": {",
+							"            \"atelierID\": randomAct,",
+							"            \"start\": `${randomStart<10?\"0\":\"\"}${randomStart}:00:00`,",
+							"            \"eind\": `${endStart<10?\"0\":\"\"}${endStart}:00:00`",
+							"        },",
+							"        \"clients\":cli,",
+							"        \"begeleiders\":beg",
+							"    }",
+							"    body.push(obj);",
+							"}",
+							"pm.environment.set(\"Body\",JSON.stringify(body));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{Body}}"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/1/week/1/create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"1",
+						"week",
+						"1",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Template Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Template/dag/1/week/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"1",
+						"week",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

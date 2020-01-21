@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation"
+            app:startDestination="@id/clientListFragment">
+    <fragment android:id="@+id/clientListFragment" android:name="be.grasmaaier.kolveniershof.clients.ClientListFragment"
+              android:label="Kolveniershof" tools:layout="@layout/fragment_client_list">
+        <action
+                android:id="@+id/action_clientListFragment_to_clientWeekOverviewFragment"
+                app:destination="@id/clientWeekOverviewFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/clientWeekOverviewFragment"
+            android:name="be.grasmaaier.kolveniershof.schema.ClientWeekOverviewFragment"
+            android:label="fragment_client_week_overview"
+            tools:layout="@layout/fragment_client_week_overview">
+    <action
+        android:id="@+id/action_clientWeekOverviewFragment_to_clientGameFragment"
+        app:destination="@id/clientGameFragment" /></fragment>
+    <fragment
+        android:id="@+id/clientGameFragment"
+        android:name="be.grasmaaier.kolveniershof.pictogame.ClientGameFragment"
+        android:label="Game">
+        <action
+            android:id="@+id/action_clientGameFragment_to_clientWeekOverviewFragment"
+            app:destination="@id/clientWeekOverviewFragment" /></fragment>
+</navigation>

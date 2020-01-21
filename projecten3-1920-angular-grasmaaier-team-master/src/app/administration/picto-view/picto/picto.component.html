@@ -1,0 +1,28 @@
+<div class="container-fluid" style="padding:0;">
+  <div class="row">
+    <div class="col-1 align-self-center">
+      <fa-icon class="blue" *ngIf="selectedIndex==1" [icon]="faArrowLeft" (click)="selectedIndex = selectedIndex-1">
+      </fa-icon>
+    </div>
+    <!-- zowel ngif als ngfor om over alle dagen te iteraten? -->
+    <!-- Nu geef je de volledige array met dagen door aan elke individuele dag zonder een deftige manier om de rest er uit te filteren -->
+  
+    <div class="col-10 align-self-center" *ngIf="ateliers$ as atelier">
+      <p *ngIf="selectedIndex===0" class="row">
+        <app-picto-weekend [clientID]="clientId$" class="col-4"></app-picto-weekend>
+        <app-picto-day [atelier]="atelier" [dayName]="'Maandag'" [dayNumber]="0" class="col-4"></app-picto-day>
+        <app-picto-day [atelier]="atelier" [dayName]="'Dinsdag'" [dayNumber]="1" class="col-4"></app-picto-day>
+      </p>
+      <p *ngIf="selectedIndex===1" class="row">
+        <app-picto-day [atelier]="atelier" [dayName]="'Woensdag'" [dayNumber]="2" class="col-4"></app-picto-day>
+        <app-picto-day [atelier]="atelier" [dayName]="'Donderdag'" [dayNumber]="3" class="col-4"></app-picto-day>
+        <app-picto-day [atelier]="atelier" [dayName]="'Vrijdag'" [dayNumber]="4" class="col-4"></app-picto-day>
+      </p>
+    </div>
+
+    <div class="col-1 align-self-center">
+      <fa-icon class="blue" *ngIf="selectedIndex==0" [icon]="faArrowRight" (click)="selectedIndex = selectedIndex+1">
+      </fa-icon>
+    </div>
+  </div>
+</div>

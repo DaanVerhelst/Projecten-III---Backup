@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="KolveniershofAPI.Controllers.AtelierController">
+    <Position X="0.5" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>QAAACAAAABAAAAQCAAAkAAAAAQEAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Controllers\AtelierController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KolveniershofAPI.Controllers.DagController">
+    <Position X="12" Y="0.5" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>EAlgACAgAAAlABAACCgAQoAAwkAAQAAQAggAgAAAECg=</HashCode>
+      <FileName>Controllers\DagController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KolveniershofAPI.Controllers.DagMenuController">
+    <Position X="8.5" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAgAAAAAEAgAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Controllers\DagMenuController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KolveniershofAPI.Controllers.GebruikerController">
+    <Position X="4.75" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIBQEAAABAAAAAAABAAAAAAAgAAAAAABACCAAAEAA=</HashCode>
+      <FileName>Controllers\GebruikerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KolveniershofAPI.Controllers.PersoonController">
+    <Position X="6.75" Y="4.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AIAIAAAIAAOAAAAAIAAAAMAAAUBgACAgAAABggBAAoQ=</HashCode>
+      <FileName>Controllers\PersoonController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KolveniershofAPI.Controllers.TemplateController">
+    <Position X="0.5" Y="4.5" Width="6" />
+    <TypeIdentifier>
+      <HashCode>QAiAEAEIgAAAABBFhAAAAAAgAAgIAgEFAAAAAAAAAGA=</HashCode>
+      <FileName>Controllers\TemplateController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

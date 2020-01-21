@@ -1,0 +1,112 @@
+<app-navigation [navMode]="mode"></app-navigation>
+<app-breadcrumb [navList]="breadcrumb"></app-breadcrumb>
+<div class="container">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-cy="add-client">
+    Client Toevoegen
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Client Toevoegen</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="card mx-auto col-md-10 shadow-sm">
+                <app-add-client (clienten)="catchEventEmitter($event)">
+                </app-add-client>
+              </div>
+              <!-- <div class="mx-auto mt-4">
+              <button type="button" class="btn btn-primary" (click)="addAnotherClient()">Voeg nog een client toe</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+          <!-- <button type="submit" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--Actualy Page-->
+<div class="album py-5">
+<div *ngIf="client$ | async as client">
+<div class="container"> 
+<div class="row">
+    <div class="col-md-3 mb-4" *ngFor="let c of client">
+      <div class="card h-100 mb-4 shadow-sm" data-cy="client-card">
+        <app-profielfoto [persoon]="c"></app-profielfoto>
+
+        <div class="card-body">
+          <h5 class="card-title">{{ c.voornaam }} {{c.familienaam}} </h5>
+        </div>
+
+        <div class="d-flex ml-2 mb-2 justify-content-between align-items-center">
+            <div class="btn-group mt-auto">
+                <a
+                (click)='edit(c, c.id)'
+                class=" btn btn-sm btn-outline-warning"
+                data-toggle="modal" data-target="#editModal"
+                data-cy="edit-client"
+                >aanpassen</a
+              >
+              <a
+              (click)="delete(c.id)"
+              class=" btn btn-sm btn-outline-danger"
+              data-cy="delete-client"
+              >verwijderen</a
+            >
+            </div>
+            
+          </div>
+      </div>
+
+<!-- edit-Modal -->
+
+
+
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Client Aanpassen</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="card mx-auto col-md-10 shadow-sm">
+              <app-edit-client [client$]="testPersoon" [id]="testID" (clienten)="catchEventEmitter($event)">
+              </app-edit-client>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+        <!-- <button type="submit" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="false"
+        android:background="@drawable/border">
+
+    <LinearLayout
+            android:id="@+id/day_view_day_image_container"
+            android:layout_width="@dimen/big_width"
+            android:layout_height="wrap_content"
+            android:background="@color/Black"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+                android:id="@+id/day_view_day_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_5sp"
+                android:src="@drawable/maandagbanner"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/BannerImage" />
+    </LinearLayout>
+
+    <TableLayout
+            android:id="@+id/day_view_tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_view_day_image_container">
+
+        <!-- Bus en koffie -->
+        <TableRow style="@style/TableRow">
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/bus" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/koffie" />
+        </TableRow>
+
+        <!-- VM activiteiten-->
+        <TableRow android:id="@+id/day_view_vm_row1"
+                style="@style/TableRow">
+            <ImageView  style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+        </TableRow>
+
+        <!-- Eten -->
+        <TableRow style="@style/TableRow">
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/bordleeg" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+        </TableRow>
+
+        <!-- NM activiteiten-->
+        <TableRow android:id="@+id/day_view_nm_row1"
+                style="@style/TableRow">
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+        </TableRow>
+
+        <!-- Bus en koffie -->
+        <TableRow style="@style/TableRow">
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/koffie" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/bus" />
+        </TableRow>
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

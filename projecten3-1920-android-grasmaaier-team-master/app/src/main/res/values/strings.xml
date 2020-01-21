@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Kolveniershof</string>
+    <string name="kolveniershof">Kolveniershof</string>
+    <string name="aanmelden">Aanmelden</string>
+    <string name="tik_op_je_foto_om_je_planning_te_zien">Tik op je foto om je planning te zien!</string>
+    <string name="wie_ben_je">Wie ben je?</string>
+    <string name="person">Person</string>
+    <string name="maandag">Maandag</string>
+    <string name="dit_is_je_planning_voor_maandag">Dit is je planning voor Maandag</string>
+    <string name="vorige">vorige</string>
+    <string name="volgende">volgende</string>
+    <string name="weekplanning_sub">Dit is je planning voor de week</string>
+    <string name="dagplanning_sub">Dit is je planning voor de dag</string>
+    <string name="weekplanning_main">Weekplanning</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next"><![CDATA[>]]></string>
+    <string name="previous" ><![CDATA[<]]></string>
+    <string name="dagplanning_main">Dagplanning</string>
+    <string name="Picto">Picto van client</string>
+    <string name="PictoDag">Picto van de dag</string>
+    <string name="email">Email</string>
+    <string name="sc_aan">Schema aanpassen</string>
+    <string name="sc_con">Schema controleren</string>
+    <string name="login">Login</string>
+    <string name="password">Paswoord</string>
+</resources>

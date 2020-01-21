@@ -1,0 +1,48 @@
+.light-box {
+    background-color: rgba(255, 255, 255, 0.2); 
+    color: rgb(82, 77, 77);
+    /* padding: 2vw; */
+    font-size: 5vw;
+}
+
+.blue-box {
+    background-color: #007ddd;
+    color: white;
+    /* padding: 2vw; */
+    
+    font-size: 3vw;
+}
+
+.dark-blue-box {
+    background-color: #1f567c;
+    color: white;
+}
+
+
+.card{
+    background: None;
+    border: None;
+}
+
+.btn-lg {
+    font-size: 1.8vw;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+
+
+@media screen and (min-width: 1200px) {
+    .light-box {
+       font-size: 5em;
+    }
+
+    .blue-box {
+        font-size: 3em;
+    }
+    .btn-lg {
+        font-size: 1.5em;
+        padding-top: 2em;
+        padding-bottom: 2em;
+    }
+  }

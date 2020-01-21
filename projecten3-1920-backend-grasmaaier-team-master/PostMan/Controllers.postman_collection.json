@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "3a6853c2-7412-4ae1-bf0b-9f819d01e135",
+		"name": "Controllers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get authorization token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b4505da3-5a62-4203-9d40-d6429812331c",
+						"exec": [
+							"var data = pm.response.text();\r",
+							"pm.environment.set(\"token\", data)\r",
+							"console.log(pm.variables.get(\"token\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"Tycho.Altink@mail.be\",\r\n  \"password\": \"admin123\"\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44374/api/Gebruiker",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44374",
+					"path": [
+						"api",
+						"Gebruiker"
+					]
+				},
+				"description": "Get token"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Client",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

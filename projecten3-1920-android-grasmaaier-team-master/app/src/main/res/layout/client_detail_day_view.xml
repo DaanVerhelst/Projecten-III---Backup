@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="false"
+        android:background="@drawable/border">
+
+
+    <ImageView
+            android:id="@+id/day_view_day_image"
+            android:layout_width="@dimen/zero_dimen"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_5sp"
+            android:layout_marginTop="@dimen/margin_5sp"
+            android:layout_marginEnd="@dimen/margin_5sp"
+            style="@style/BannerImage"
+            android:src="@drawable/maandagbanner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+            android:id="@+id/day_view_tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_view_day_image">
+
+        <!-- Bus en koffie -->
+        <TableRow style="@style/TableRow">
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/bus" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/koffie" />
+        </TableRow>
+
+        <!-- VM activiteiten-->
+        <TableRow android:id="@+id/day_view_vm_row1"
+                style="@style/TableRow">
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+        </TableRow>
+
+        <TableRow android:id="@+id/day_view_vm_row2"
+                style="@style/TableRow">
+            <ImageView android:src="@drawable/blanco"
+                    style="@style/PictoLayout" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+        </TableRow>
+
+        <!-- Eten -->
+        <TableRow style="@style/TableRow">
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/bordleeg" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+        </TableRow>
+
+        <!-- NM activiteiten-->
+        <TableRow android:id="@+id/day_view_nm_row1"
+                style="@style/TableRow">
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+        </TableRow>
+
+        <TableRow android:id="@+id/day_view_nm_row2"
+                style="@style/TableRow">
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+        </TableRow>
+
+        <!-- Bus en koffie -->
+        <TableRow style="@style/TableRow">
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/koffie" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/blanco" />
+            <ImageView style="@style/PictoLayout"
+                    android:src="@drawable/bus" />
+        </TableRow>
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

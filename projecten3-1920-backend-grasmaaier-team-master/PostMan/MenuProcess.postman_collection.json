@@ -1,0 +1,321 @@
+{
+	"info": {
+		"_postman_id": "cea172bc-ca85-408a-8cee-d5e298d11525",
+		"name": "MenuProcess",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get authorization token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b4505da3-5a62-4203-9d40-d6429812331c",
+						"exec": [
+							"var data = pm.response.text();\r",
+							"pm.environment.set(\"token\", data)\r",
+							"console.log(pm.variables.get(\"token\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"Tycho.Altink@mail.be\",\r\n  \"password\": \"admin123\"\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44374/api/Gebruiker",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44374",
+					"path": [
+						"api",
+						"Gebruiker"
+					]
+				},
+				"description": "Get token"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ateliers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44374/api/Atelier/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44374",
+					"path": [
+						"api",
+						"Atelier",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Clienten",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "30efe833-53ed-45a1-8cc1-ee997f94e901",
+						"exec": [
+							"var json = pm.response.json();",
+							"json = json.map(j=>j.id);",
+							"pm.environment.set(\"clienten\",json);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44374/api/Persoon/clienten",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44374",
+					"path": [
+						"api",
+						"Persoon",
+						"clienten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Begeleiders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "40e1f85d-12e9-4e75-9b83-d9956e27333b",
+						"exec": [
+							"var json = pm.response.json();",
+							"json = json.map(j=>j.id);",
+							"pm.environment.set(\"begeleiders\",json);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44374/api/Persoon/begeleiders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44374",
+					"path": [
+						"api",
+						"Persoon",
+						"begeleiders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create template day",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dbe826a5-6b98-440b-8cbd-713cc68d3f81",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "abaa3b75-62c1-4bb0-a6cb-fff75004d81c",
+						"exec": [
+							"var client = pm.environment.get(\"clienten\")",
+							"var num = Math.random()*client.length",
+							"var toAdd = []",
+							"",
+							"for (i = 0; i < num; i++) {",
+							"    var randomClient = client[Math.floor((Math.random()*client.length))]",
+							"    var index = client.indexOf(randomClient)",
+							"    ",
+							"    if (index > -1) {",
+							"       client.splice(index, 1)",
+							"    }",
+							"    ",
+							"    toAdd.push(randomClient)",
+							"}",
+							"",
+							"console.log(toAdd)",
+							"var client = pm.environment.set(\"clientsToAdd\",toAdd)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"atelierInfo\": {\r\n            \"atelierID\": 1,\r\n            \"start\": \"09:00:00\",\r\n            \"eind\": \"14:00:00\"\r\n        },\r\n        \"clients\": [],\r\n        \"begeleiders\": []\r\n    },\r\n    {\r\n        \"atelierInfo\": {\r\n            \"atelierID\": 2,\r\n            \"start\": \"09:00:00\",\r\n            \"eind\": \"12:30:00\"\r\n        },\r\n        \"clients\": [{{clientsToAdd}}],\r\n        \"begeleiders\": []\r\n    }\r\n]"
+				},
+				"url": {
+					"raw": "https://localhost:44374/api/Template/dag/1/week/1/create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44374",
+					"path": [
+						"api",
+						"Template",
+						"dag",
+						"1",
+						"week",
+						"1",
+						"create"
+					]
+				},
+				"description": "\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Menu",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"soep\": \"string\",\r\n  \"groente\": \"string\",\r\n  \"vlees\": \"string\",\r\n  \"supplement\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44374/api/DagMenu/1/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44374",
+					"path": [
+						"api",
+						"DagMenu",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Menu",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44374/api/DagMenu/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44374",
+					"path": [
+						"api",
+						"DagMenu",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

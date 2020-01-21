@@ -1,0 +1,104 @@
+
+<ng-container *ngIf="client$ as c">
+<div class="mt-4">
+    <form [formGroup]="client" (ngSubmit)="onSubmit()">
+    
+        <div class="input-group mb-3">
+           <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"> 
+               <!-- <mat-icon>person</mat-icon>  -->
+           </span>
+          </div>
+          <input
+            type="text"
+            [value]="c.voornaam"
+            class="form-control mr-sm-2"
+            placeholder="Voornaam"
+            aria-label="Name"
+            data-cy="client-voornaam-edit"
+            aria-describedby="basic-addon1"
+            formControlName="voornaam"
+            [ngClass]="fieldClass('voornaam')"
+          />
+          <input
+          type="text"
+          [value]="c.familienaam"
+          class="form-control mr-sm-2"
+          placeholder="Familienaam"
+          aria-label="Name"
+          data-cy="client-familienaam-edit"
+          aria-describedby="basic-addon1"
+          formControlName="achternaam"
+          [ngClass]="fieldClass('achternaam')"
+        />
+           <div class="invalid-feedback" *ngIf="isValid('voornaam')">
+            voornaam {{ getErrorMessage(client.get("voornaam").errors) }}
+          </div>
+        </div> 
+        
+        
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              <!--<mat-icon>attach_file</mat-icon>-->
+            </span>
+          </div>
+        
+    
+          
+          <div class="custom-file">
+            <input 
+            type="file"
+            class="form-control-file custom-file-input mr-sm-2"
+            placeholder="image"
+            aria-label="image"
+            id="inputGroupFile01"
+            aria-describedby="inputGroupFileAddon01"
+            #fileInput
+            (change)="preUpload($event)"
+            formControlName="image"
+            [ngClass]="fieldClass('image')"
+            />
+            <label
+            class="custom-file-label"
+            for="inputGroupFile01"
+            *ngIf="!isFileChosen"
+            >Profielfoto kiezen</label
+          >
+          <label
+            class="custom-file-label"
+            for="inputGroupFile01"
+            *ngIf="isFileChosen"
+            >{{ fileName }}</label
+          >
+          </div>
+         
+          
+           <!-- <div class="invalid-feedback d-block" *ngIf="isValid('image')">
+              {{ getErrorMessage(client.get("image").errors) }}
+          </div>  -->
+        </div> 
+    
+        <div class="text-center mx-auto mt-4 mb-4">
+            <button
+            type="submit"
+            data-cy="submit-client-edit"
+            class="btn btn-outline-primary "
+            
+          >
+            Opslaan
+          </button> 
+          <!-- <button
+            type="submit"
+            data-cy="client-submit"
+            class="btn btn-outline-primary "
+            [disabled]="client.invalid"
+          >
+            Save
+          </button>  -->
+        </div>
+      </form> 
+      </div>
+
+    </ng-container>

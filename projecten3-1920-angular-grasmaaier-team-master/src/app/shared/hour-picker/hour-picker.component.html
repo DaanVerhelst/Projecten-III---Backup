@@ -1,0 +1,12 @@
+<div class="input-group">
+  <div class="form-control">
+    <div class="d-flex justify-content-center">
+        <input type="text" class="float-left hour-picker hour-picker-left" [value]="hour[0]" (keyup)="onLeftChanged($event)" (keydown)="onLeftArrowRepeat($event)">
+        <span class="float-left mr-1 ml-1">:</span>
+        <input type="text" class="float-left hour-picker hour-picker-right" [value]="hour[1]" (keyup)="onRightChanged($event)" (keydown)="onRightArrowRepeat($event)">
+    </div>
+  </div>
+  <div class="input-group-prepend">
+    <span class="input-group-text"><fa-icon [icon]="faTime"></fa-icon></span>
+  </div>
+</div>

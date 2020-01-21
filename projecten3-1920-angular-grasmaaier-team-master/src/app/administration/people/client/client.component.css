@@ -1,0 +1,17 @@
+.modal-header{
+    background-color: #007ddd;
+}
+
+.modal-title {
+    color: white;
+}
+
+.close {
+    color: white;
+    opacity: 1;
+}
+
+.styleImg {
+
+    width: 200px;
+}

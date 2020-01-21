@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/login_navigation"
+        app:startDestination="@id/startUpFragment2">
+
+    <fragment
+            android:id="@+id/startUpFragment2"
+            android:name="be.grasmaaier.kolveniershof.startup.StartUpFragment"
+            android:label="fragment_start_up"
+            tools:layout="@layout/fragment_start_up" >
+        <action
+                android:id="@+id/action_startUpFragment2_to_loginFragment"
+                app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/loginFragment"
+            android:name="be.grasmaaier.kolveniershof.login.LoginFragment"
+            android:label="login_fragment"
+            tools:layout="@layout/login_fragment" />
+</navigation>

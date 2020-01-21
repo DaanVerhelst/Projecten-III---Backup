@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="big_width">5000dp</dimen>
+    <dimen name="margin_5sp">5dp</dimen>
+    <dimen name="zero_dimen">0dp</dimen>
+    <dimen name="picto_image_width">200dp</dimen>
+    <dimen name="margin_50dp">50dp</dimen>
+    <dimen name="margin_70dp">70dp</dimen>
+    <dimen name="margin_10dp">10dp</dimen>
+    <dimen name="small_padding">15dp</dimen>
+    <dimen name="margin_20dp">20dp</dimen>
+    <dimen name="text_size">20sp</dimen>
+    <dimen name="small_bias">0.5</dimen>
+    <dimen name="big_text_size">40sp</dimen>
+    <dimen name="image_height">90dp</dimen>
+    <dimen name="text_size_em">20</dimen>
+    <dimen name="margin_130dp">130dp</dimen>
+</resources>

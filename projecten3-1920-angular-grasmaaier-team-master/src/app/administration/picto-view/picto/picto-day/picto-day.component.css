@@ -1,0 +1,42 @@
+/*.card {
+    height:582px;
+}*/
+.morning-set {
+    
+    
+    border: 1px solid black;
+}
+.morning-var {
+    
+    min-height:170px;
+    border: 1px solid black;
+    border-top: 0px;
+    overflow: hidden;
+    position: relative;
+}
+.noon {
+    
+   
+    border: 1px solid black;
+    border-top: 0px;
+}
+.afternoon {
+    
+    min-height:170px;
+    border: 1px solid black;
+    border-top: 0px;
+}
+.evening {
+    
+   
+    border: 1px solid black;
+    border-top: 0px;
+}
+.picto {
+    min-width: 40px;
+    max-width: 40px;
+    margin-left: 5px;
+    margin-top: 5px;
+    display: inline-block;
+}
+

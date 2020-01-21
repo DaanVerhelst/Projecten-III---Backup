@@ -1,0 +1,14 @@
+.hour-picker{
+    width: 40px;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.hour-picker-left{
+    text-align: right;
+}
+
+.hour-picker-right{
+    text-align: left;
+}

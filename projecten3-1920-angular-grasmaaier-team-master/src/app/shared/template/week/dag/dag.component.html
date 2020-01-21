@@ -1,0 +1,8 @@
+<div class="card h-100" [routerLink]="" (click)="clicked()" (keyup.enter)="clicked()">
+    <div class="card-body">
+        <h5 class="card-title" *ngIf="dagNr!=null">{{dagNr - 1|dagPipe}}</h5>
+        <ul class="list-group card-text">
+            <li class="list-group-item" *ngFor="let item of atelierList">{{item.naam}}</li>
+        </ul>
+    </div>
+</div>

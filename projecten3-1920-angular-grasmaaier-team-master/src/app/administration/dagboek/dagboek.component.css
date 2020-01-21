@@ -1,0 +1,13 @@
+.hover:hover{
+    cursor: pointer;
+}
+
+.a-text:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    color: #0056B3;
+}
+
+.a-text{
+    color: #00A1F9;
+}

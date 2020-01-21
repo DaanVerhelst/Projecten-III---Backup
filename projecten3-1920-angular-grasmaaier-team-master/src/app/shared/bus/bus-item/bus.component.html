@@ -1,0 +1,5 @@
+
+<div *ngIf="imageToShow != null" class="">
+  <img  [src]="image" class="picto">
+</div>
+<span *ngIf="imageToShow == null && loadedImg" class="nopicto float-left"><div>{{bus.naam}}</div></span>

@@ -1,0 +1,12 @@
+<form style="margin-top:30px;" [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="form-group">
+    <label for="comment">Commentaar:</label>
+    <textarea type="text" style="min-height: 300px;" formControlName="comment" class="form-control" id="comment"
+    placeholder="Vul hier de commentaar in">
+    </textarea>
+  </div>
+  <div class="row">
+    <button type="submit" [disabled]="!enabled()"
+     class="btn btn-primary ml-auto mr-auto">opslaan</button>
+  </div>
+</form>

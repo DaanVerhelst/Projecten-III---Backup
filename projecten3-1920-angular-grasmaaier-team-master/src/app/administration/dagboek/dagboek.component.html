@@ -1,0 +1,23 @@
+<app-navigation [navMode]="mode"></app-navigation>
+<app-breadcrumb [navList]="breadcrumb"></app-breadcrumb>
+<div *ngIf="selectedDate==null">
+    <app-datepicker (dateChosen)="changeDate($event)">
+    </app-datepicker>
+</div>
+<div class="container-fluid"*ngIf="selectedDate!==null">
+    <div class="row">
+        <ul class="col-10 mr-auto nav nav-tabs">
+            <li *ngFor="let it of cate" class="nav-item">
+            <a class="nav-link hover" [ngClass]="it === selected?'active':''" (click)="changeSelected(it)">
+                <span class="a-text">{{it}}</span>
+            </a>
+            </li>
+        </ul>
+        <button class="mr-auto btn btn-outline-primary" (click)="changeDate(null)">
+            Verander datum
+        </button>
+    </div>
+        <app-notitie-veld *ngIf="notities!==null" (change)="catchChange($event)"
+        [comment]="selectedComment" [date]="selectedDate" [selectedCategorie]="selected">
+        </app-notitie-veld>
+</div>

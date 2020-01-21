@@ -1,0 +1,10 @@
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.greyborder{
+    border-width: 2px;
+    border-color: #707070;
+    border-style: solid;
+}

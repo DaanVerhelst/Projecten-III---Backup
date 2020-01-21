@@ -1,0 +1,36 @@
+<app-navigation [navMode]="mode"></app-navigation>
+<app-breadcrumb [navList]="breadcrumb"></app-breadcrumb>
+
+<div class="container justify-content-center" *ngIf='menu'>
+    <form [formGroup]="menuForm">
+        <div class="form-row">
+          <div class="col">
+            <label>Soep</label>
+            <input type="text" class="form-control" placeholder="Soep" [value]="menu.soep" formControlName="soep" data-cy="Soep-textfield">
+          </div>
+          <div class="col">
+              <label>Groente</label>
+            <input type="text" class="form-control" placeholder="Groente" [value]="menu.groente" formControlName="groente" data-cy="Groente-textfield">
+          </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label>Vlees</label>
+              <input type="text" class="form-control" placeholder="Vlees" [value]="menu.vlees" formControlName="vlees" data-cy="Vlees-textfield">
+            </div>
+            <div class="col">
+                <label>Supplement</label>
+              <input type="text" class="form-control" placeholder="Supplement" [value]="menu.supplement" formControlName="supplement" data-cy="Supplement-textfield">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+                <button type="button" class="btn btn-primary btn-sm cancel" (click)="onCancel()">Annuleren</button>
+                <button type="submit" class="btn btn-primary btn-sm confirm" (click)="onSubmit()" data-cy="Knop-opslaan">Opslaan</button>
+            </div>
+
+          </div>
+      </form>
+      
+    </div>
+

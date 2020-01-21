@@ -1,0 +1,31 @@
+<form [formGroup]="weekend" (ngSubmit)="onSubmit()">
+<div class="card">
+  <div class="card-header">
+    Zaterdag
+  </div>
+  <div class="card-body">
+    <textarea  formControlName="zaterdag" class="textarea-width form-control">
+
+    </textarea>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    Zondag
+  </div>
+  <div class="card-body">
+    <textarea  formControlName="zondag" class="textarea-width form-control">
+      
+    </textarea>
+  </div>
+</div>
+<button
+type="submit"
+data-cy="submit-client-edit"
+class="btn btn-outline-secondary w-100 mt-2"
+
+>
+Opslaan
+</button> 
+</form>
+

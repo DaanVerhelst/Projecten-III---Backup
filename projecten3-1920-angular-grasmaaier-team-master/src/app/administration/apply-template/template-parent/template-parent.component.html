@@ -1,0 +1,7 @@
+<app-navigation [navMode]="mode"></app-navigation>
+<app-breadcrumb [navList]="breadcrumb"></app-breadcrumb>
+<app-datepicker style="height:100%" *ngIf="date==null" (dateChosen)="changeDate($event)"
+placeholder="Enter The First Date">
+</app-datepicker>
+<app-apply-template *ngIf="date!=null" [selectedDate]="date" (dateChangedChosen)="clearDate($event)">
+</app-apply-template>
